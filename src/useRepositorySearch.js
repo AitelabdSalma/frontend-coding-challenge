@@ -7,6 +7,25 @@ export default function useRepositorySearch(pageNumber) {
   const [repositories, setRepositories] = useState([])
   const [hasMore, setHasMore] = useState(false)
 
+  const date = formatDate()
+
+  function formatDate() {
+    let today = new Date()
+    var priorDate = new Date().setDate(today.getDate() - 30)
+    let d = new Date(priorDate)
+
+    let month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2)
+      day = '0' + day;
+
+    return [year, month, day].join('-');
+  }
+
   useEffect(() => {
     setLoading(true)
     setError(false)
@@ -14,10 +33,14 @@ export default function useRepositorySearch(pageNumber) {
     axios({
       method: 'GET',
       url: 'https://api.github.com/search/repositories',
-      params: { q: 'created:>2017-10-22', page: pageNumber, sort: 'stars', order: 'desc' },
+      params: {
+        q: `created:>${date}`,
+        page: pageNumber,
+        sort: 'stars',
+        order: 'desc'
+      },
       cancelToken: new axios.CancelToken(c => cancel = c)
     }).then(res => {
-      console.log("resres", res);
       setRepositories(prevRepositories => {
         return [...new Set([...prevRepositories, ...res.data.items.map(b => b.name)])]
       })
@@ -28,7 +51,7 @@ export default function useRepositorySearch(pageNumber) {
       setError(true)
     })
     return () => cancel()
-  }, [pageNumber])
+  }, [pageNumber, date])
 
   return { loading, error, repositories, hasMore }
 }
