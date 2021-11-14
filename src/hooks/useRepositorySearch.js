@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { get30DaysAgoDate } from '../utils/timeUtils'
 
 export default function useRepositorySearch(pageNumber) {
   const [loading, setLoading] = useState(true)
@@ -7,24 +8,7 @@ export default function useRepositorySearch(pageNumber) {
   const [repositories, setRepositories] = useState([])
   const [hasMore, setHasMore] = useState(false)
 
-  const date = formatDate()
-
-  function formatDate() {
-    let today = new Date()
-    var priorDate = new Date().setDate(today.getDate() - 30)
-    let d = new Date(priorDate)
-
-    let month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
-
-    if (month.length < 2)
-      month = '0' + month;
-    if (day.length < 2)
-      day = '0' + day;
-
-    return [year, month, day].join('-');
-  }
+  const date = get30DaysAgoDate()
 
   useEffect(() => {
     setLoading(true)
@@ -42,7 +26,7 @@ export default function useRepositorySearch(pageNumber) {
       cancelToken: new axios.CancelToken(c => cancel = c)
     }).then(res => {
       setRepositories(prevRepositories => {
-        return [...new Set([...prevRepositories, ...res.data.items.map(b => b.name)])]
+        return [...new Set([...prevRepositories, ...res.data.items])]
       })
       setHasMore(res.data.incomplete_results)
       setLoading(false)
