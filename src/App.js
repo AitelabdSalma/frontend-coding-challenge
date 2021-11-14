@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react'
-import useRepositorySearch from './useRepositorySearch'
-
+import useRepositorySearch from './hooks/useRepositorySearch'
+import Card from './component/Card/Card'
 export default function App() {
   const [pageNumber, setPageNumber] = useState(1)
 
@@ -31,9 +31,9 @@ export default function App() {
     <>
       {repositories.map((repository, index) => {
         if (repositories.length === index + 1) {
-          return <div ref={lastRepositoryElementRef} key={repository}>{repository}</div>
+          return <Card ref={lastRepositoryElementRef} key={repository}>{repository}</Card>
         } else {
-          return <div key={repository}>{repository}</div>
+          return <Card key={repository}>{repository}</Card>
         }
       })}
       <div>{loading && 'Loading...'}</div>
