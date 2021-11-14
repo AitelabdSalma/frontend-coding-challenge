@@ -29,13 +29,15 @@ export default function App() {
 
   return (
     <>
-      {repositories.map((repository, index) => {
-        if (repositories.length === index + 1) {
-          return <Card ref={lastRepositoryElementRef} key={repository}>{repository}</Card>
-        } else {
-          return <Card key={repository}>{repository}</Card>
-        }
-      })}
+      <div className="list__repositories">
+        {repositories.map((repository, index) => {
+          if (repositories.length === index + 1) {
+            return <Card ref={lastRepositoryElementRef} key={repository}>{repository}</Card>
+          } else {
+            return <Card key={repository}>{repository}</Card>
+          }
+        })}
+      </div>
       <div>{loading && 'Loading...'}</div>
       <div>{error && 'Error'}</div>
     </>

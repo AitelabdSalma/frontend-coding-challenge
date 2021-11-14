@@ -23,3 +23,16 @@ export function get30DaysAgoDate() {
 
     return [year, month, day].join('-');
 }
+
+
+export function formatNumbersInThousands(number = 0) {
+    let rest = (number / 1000)
+    let caracter = 'k'
+    if (rest > 1000) {
+        rest = rest / 1000
+        caracter = 'M'
+    }
+    rest = rest.toFixed(1)
+    return rest >= 1 ? `${rest}${caracter}` : number
+}
+

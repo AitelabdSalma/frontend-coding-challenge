@@ -33,6 +33,7 @@ export default function useRepositorySearch(pageNumber) {
     }).catch(e => {
       if (axios.isCancel(e)) return
       setError(true)
+      setLoading(false)
     })
     return () => cancel()
   }, [pageNumber, date])
