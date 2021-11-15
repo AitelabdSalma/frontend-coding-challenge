@@ -31,9 +31,9 @@ export default function useRepositorySearch(pageNumber) {
       setHasMore(res.data.incomplete_results)
       setLoading(false)
     }).catch(e => {
+      setLoading(false)
       if (axios.isCancel(e)) return
       setError(true)
-      setLoading(false)
     })
     return () => cancel()
   }, [pageNumber, date])

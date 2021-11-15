@@ -3,7 +3,7 @@ import { count_Date_Difference_In_Days, formatNumbersInThousands } from '../../u
 import './Card.css';
 
 
-const Card = ({ ref, repository }) => {
+const Card = ({ repository }) => {
     const { owner, name, description, has_issues, open_issues_count, stargazers_count, created_at } = repository
     const propsCard = {
         className: "card"
@@ -18,9 +18,7 @@ const Card = ({ ref, repository }) => {
                 <div className="card__description">{description}</div>
                 <span className="card__label stars"> Stars : {formatNumbersInThousands(stargazers_count)}</span>
                 <span className="card__label issues"> Issues : {has_issues ? formatNumbersInThousands(open_issues_count) : 0}</span>
-                <span className="card__time">
-                    Submitted {count_Date_Difference_In_Days(created_at)} days ago by {owner.login}</span>
-
+                <span className="card__time"> Submitted {count_Date_Difference_In_Days(created_at)} days ago by {owner.login}</span>
             </div>
         </div>
     )
