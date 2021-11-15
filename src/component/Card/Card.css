@@ -1,35 +1,3 @@
-:root {
-  --font-family-primary:  'Lato', sans-serif;
-  --font-family-secondary: 'Lato', sans-serif;
-  
-  --font-size-title: px;
-  --line-height-title: 1.4;
-  --font-size-caption: 12px;
-  --line-height-caption: 1.2;
-  
-  --color-text: #222022;
-  --color-highlight-primary: #FFEF7E;
-  --color-highlight-secondary: #B7F9E9;
-  --border-radius-primary: 32px; 
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  padding: 0;
-  margin: 0;
-  font-family: var(--font-family-primary);
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-caption);
-}
-
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
 .card {
   width: 90%;

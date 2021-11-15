@@ -1,0 +1,42 @@
+
+:root {
+    --font-family-primary:  'Lato', sans-serif;
+    --font-family-secondary: 'Lato', sans-serif;
+    
+    --font-size-title: 24px;
+    --line-height-title: 1.4;
+    --font-size-caption: 12px;
+    --line-height-caption: 1.2;
+    
+    --color-text: #222022;
+    --color-highlight-primary: #FFEF7E;
+    --color-highlight-secondary: #B7F9E9;
+    --border-radius-primary: 15px; 
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-caption);
+    line-height: var(--line-height-caption);
+  }
+  
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+
+/*<meta name="viewport" content="width=device-width, initial-scale=1">*/
+.list__repositories{
+    margin: 200px;
+    display: block;
+    height: 30px;
+    background-color: black;
+}
