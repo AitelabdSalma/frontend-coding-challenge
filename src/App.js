@@ -1,6 +1,8 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react'
 import useRepositorySearch from './hooks/useRepositorySearch'
 import Card from './component/Card/Card'
+import Loader from './component/loader/loader'
+import ErrorHandler from './component/errorHandler/errorHandler'
 export default function App() {
   const [pageNumber, setPageNumber] = useState(1)
 
@@ -31,15 +33,14 @@ export default function App() {
     <>
       <div className="list__repositories">
         {repositories.map((repository, index) => {
-          if (repositories.length === index + 1) {
-            return <Card ref={lastRepositoryElementRef} key={repository}>{repository}</Card>
-          } else {
-            return <Card key={repository}>{repository}</Card>
-          }
+          return (repositories.length === index + 1) ?
+            (<div ref={lastRepositoryElementRef} key={index}><Card repository={repository} /></div>)
+            :
+            (<div key={index}><Card repository={repository} /></div>)
         })}
       </div>
-      <div>{loading && 'Loading...'}</div>
-      <div>{error && 'Error'}</div>
+      <Loader loading={loading} />
+      <ErrorHandler error={error} />
     </>
   )
 }
