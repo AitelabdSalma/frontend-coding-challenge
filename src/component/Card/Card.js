@@ -3,25 +3,23 @@ import { count_Date_Difference_In_Days, formatNumbersInThousands } from '../../u
 import './Card.css';
 
 
-const Card = ({ ref, key, children }) => {
-
-    const repository = children
-
+const Card = ({ ref, repository }) => {
+    const { owner, name, description, has_issues, open_issues_count, stargazers_count, created_at } = repository
+    const propsCard = {
+        className: "card"
+    }
     return (
-        <div
-            ref={ref}
-            key={key}
-            class="card">
+        <div {...propsCard} >
             <div className="card__image">
-                <img src={repository.owner.avatar_url} alt="brown couch" />
+                <img src={owner.avatar_url} alt="brown couch" />
             </div>
             <div className="card__content">
-                <div className="card__title">{repository.name}</div>
-                <div className="card__description">{repository.description}</div>
-                <span className="card__label stars"> Stars : {formatNumbersInThousands(repository.stargazers_count)}</span>
-                <span className="card__label issues"> Issues : {repository.has_issues ? formatNumbersInThousands(repository.open_issues_count) : 0}</span>
+                <div className="card__title">{name}</div>
+                <div className="card__description">{description}</div>
+                <span className="card__label stars"> Stars : {formatNumbersInThousands(stargazers_count)}</span>
+                <span className="card__label issues"> Issues : {has_issues ? formatNumbersInThousands(open_issues_count) : 0}</span>
                 <span className="card__time">
-                    Submitted {count_Date_Difference_In_Days(repository.created_at)} days ago by {repository.owner.login}</span>
+                    Submitted {count_Date_Difference_In_Days(created_at)} days ago by {owner.login}</span>
 
             </div>
         </div>
