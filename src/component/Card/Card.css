@@ -1,8 +1,5 @@
 
 .card {
-  width: 90%;
-  max-width: 750px;
-
   border-radius: var(--border-radius-primary);
   box-shadow: 24px 24px 80px rgba(0,0,0,0.1);
   padding: 20px 20px 28px 20px;
@@ -31,8 +28,8 @@
 .card__title {
   display: block;
   font-family: var(--font-family-primary);
-  font-size: var(--font-size-title);
-  line-height: var(--line-height-title);
+  font-size: 24px;
+  line-height: 1.6em;
   color: var(--color-text);
   padding: 0 4px;
   margin-left: -4px;
@@ -46,7 +43,7 @@
     text-transform: uppercase;
     color: var(--color-text);
     margin-bottom: 6px;
-  
+    text-overflow: ellipsis;
 }
 
 
@@ -57,8 +54,6 @@
   padding: 7px 15px;
   display: inline-block;
   margin-right: 5px;
-  
-
 }
 
 
